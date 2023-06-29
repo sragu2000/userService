@@ -8,31 +8,20 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
-import java.util.stream.Collectors;
-
 @RestController
 @RequestMapping("/user")
+@Validated
 public class UserController {
     @Autowired
     UserRepository userRepository;
     @Autowired
     UserService userService;
-
     @PostMapping("/signup")
-    public ResponseEntity<List<String>> createUser(@Valid @RequestBody SignupDTO newUser, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            List<String> errors = bindingResult.getAllErrors()
-                    .stream()
-                    .map(ObjectError::getDefaultMessage)
-                    .collect(Collectors.toList());
-            return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
-        }
+    public ResponseEntity<List<String>> createUser(@Valid @RequestBody SignupDTO newUser) {
         return userService.createUser(newUser);
     }
 
@@ -52,15 +41,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@Valid @RequestBody UserLoginDTO user, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            List<String> errors = bindingResult.getAllErrors()
-                    .stream()
-                    .map(ObjectError::getDefaultMessage)
-                    .collect(Collectors.toList());
-            return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
-        }
+    public ResponseEntity<?> login(@Valid @RequestBody UserLoginDTO user) {
         return userService.login(user.getEmail(), user.getPassword());
     }
-
 }
