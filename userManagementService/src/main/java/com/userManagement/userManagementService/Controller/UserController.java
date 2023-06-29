@@ -12,16 +12,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/user")
-@Validated
 public class UserController {
     @Autowired
     UserRepository userRepository;
@@ -48,8 +44,8 @@ public class UserController {
     @GetMapping("/get-user")
     public ResponseEntity<?> getUserByID(
             @RequestParam("id")
-                    @NotNull(message = "userID can not be null")
-                    @Positive(message = "User ID must be a positive integer")
+            @NotNull(message = "userID can not be null")
+            @Positive(message = "User ID must be a positive integer")
             Long userID
     ) {
         return userService.getUserById(userID);
