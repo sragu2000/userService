@@ -1,4 +1,4 @@
-package com.userManagement.userManagementService.DTO.User;
+package com.userManagement.userManagementService.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -6,7 +6,7 @@ import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 
 @Data
-public class UserLoginDTO {
+public class UserLoginDto {
 
     @NotNull(message = "Email can't be null")
     @NotBlank(message = "Email can't be empty")

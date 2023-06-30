@@ -1,4 +1,4 @@
-package com.userManagement.userManagementService.Model;
+package com.userManagement.userManagementService.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;

@@ -1,9 +1,9 @@
-package com.userManagement.userManagementService.Controller;
-import com.userManagement.userManagementService.DTO.User.SignupDTO;
-import com.userManagement.userManagementService.DTO.User.UserLoginDTO;
-import com.userManagement.userManagementService.Model.UserModel;
-import com.userManagement.userManagementService.Repository.UserRepository;
-import com.userManagement.userManagementService.Service.UserService;
+package com.userManagement.userManagementService.controller;
+import com.userManagement.userManagementService.dto.SignupDto;
+import com.userManagement.userManagementService.dto.UserLoginDto;
+import com.userManagement.userManagementService.model.UserModel;
+import com.userManagement.userManagementService.repository.UserRepository;
+import com.userManagement.userManagementService.service.impl.UserServiceImpl;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
@@ -19,9 +19,9 @@ public class UserController {
     @Autowired
     UserRepository userRepository;
     @Autowired
-    UserService userService;
+    UserServiceImpl userService;
     @PostMapping("/signup")
-    public ResponseEntity<List<String>> createUser(@Valid @RequestBody SignupDTO newUser) {
+    public ResponseEntity<List<String>> createUser(@Valid @RequestBody SignupDto newUser) {
         return userService.createUser(newUser);
     }
 
@@ -41,7 +41,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@Valid @RequestBody UserLoginDTO user) {
+    public ResponseEntity<?> login(@Valid @RequestBody UserLoginDto user) {
         return userService.login(user.getEmail(), user.getPassword());
     }
 }

@@ -1,6 +1,6 @@
-package com.userManagement.userManagementService.Repository;
+package com.userManagement.userManagementService.repository;
 
-import com.userManagement.userManagementService.Model.UserModel;
+import com.userManagement.userManagementService.model.UserModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

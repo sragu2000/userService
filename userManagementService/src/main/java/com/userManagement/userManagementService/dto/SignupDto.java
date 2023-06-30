@@ -1,10 +1,10 @@
-package com.userManagement.userManagementService.DTO.User;
+package com.userManagement.userManagementService.dto;
 import jakarta.persistence.Column;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 @Data
-public class SignupDTO {
-    public SignupDTO() {
+public class SignupDto {
+    public SignupDto() {
         fname = null;
         lname = null;
         phone = null;
